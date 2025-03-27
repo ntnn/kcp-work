@@ -1,0 +1,21 @@
+---
+externalHostname: kcp.dev.local
+externalPort: '31443'
+certificates:
+  dnsNames:
+    - localhost
+    - kcp.dev.local
+kcp:
+  tokenAuth:
+    enabled: true
+  hostAliases:
+    enabled: true
+    values:
+      - ip: '10.96.0.100'
+        hostnames:
+          - 'kcp.dev.local'
+kcpFrontProxy:
+  service:
+    type: NodePort
+    nodePort: 31443
+    clusterIP: '10.96.0.100'
