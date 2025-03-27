@@ -1,10 +1,14 @@
 #!/usr/bin/env sh
 
-kind get clusters | grep -q kcp && exit 0
-
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <kube config output path>" >&2
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <cluster name> <cluster template> <kubeconfig output path>" >&2
     exit 1
 fi
 
-kind create cluster --config "$(dirname "$0")/kcp-kind.yaml" --kubeconfig "$1" --wait=30s
+name="$1"
+template="$2"
+output="$3"
+
+kind get clusters | grep -q "$name" && exit 0
+
+kind create cluster --name "$name" --config "$(dirname "$0")/kind/$template.yaml" --kubeconfig "$output" --wait=30s

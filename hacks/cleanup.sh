@@ -4,5 +4,5 @@ kind delete clusters "$(kind get clusters)"
 
 (
     cd "$(dirname "$0")/.."
-    git clean -fdx
+    git clean -dX
 )
