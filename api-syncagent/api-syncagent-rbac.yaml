@@ -1,0 +1,49 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: api-syncagent-mango
+rules:
+  # manage its APIExport
+  - apiGroups:
+      - apis.kcp.io
+    resources:
+      - apiexports
+    resourceNames:
+      - apiexport.sync.test
+    verbs:
+      - get
+      - list
+      - watch
+      - patch
+      - update
+  # manage APIResourceSchemas
+  - apiGroups:
+      - apis.kcp.io
+    resources:
+      - apiresourceschemas
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+  # access the virtual workspace
+  - apiGroups:
+      - apis.kcp.io
+    resources:
+      - apiexports/content
+    resourceNames:
+      - apiexport.sync.test
+    verbs:
+      - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: api-syncagent-columbo:mango-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: api-syncagent-mango
+subjects:
+  - kind: User
+    name: api-syncagent-mango
