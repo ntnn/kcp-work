@@ -4,23 +4,23 @@
 
 ```bash
 syncsource="$(pwd)/kind-syncsource.kubeconfig"
-../hacks/kind.sh syncsource default "$syncsource"
+../../hacks/kind.sh syncsource default "$syncsource"
 ```
 
 ```bash
 synctarget_raw="$(pwd)/kind-synctarget.kubeconfig"
-../hacks/kind.sh synctarget kcp "$synctarget_raw"
+../../hacks/kind.sh synctarget kcp "$synctarget_raw"
 ```
 
 ```bash
 syncer="$(pwd)/kind-syncer.kubeconfig"
-../hacks/kind.sh syncer default "$syncer"
+../../hacks/kind.sh syncer default "$syncer"
 ```
 
 ```bash
 # install kcp in synctarget
 synctarget="$(pwd)/kcp-synctarget.kubeconfig"
-../hacks/kcp.sh "$synctarget_raw" "$synctarget"
+../../hacks/kcp.sh "$synctarget_raw" "$synctarget"
 ```
 
 ## prepare synctarget
