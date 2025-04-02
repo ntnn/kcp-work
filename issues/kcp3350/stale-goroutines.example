@@ -1,0 +1,14 @@
+30 @ 0x102d5bfb8 0x102d37b5c 0x10421a8a4 0x1032fb818 0x102d64c94
+# labels: {"controller":"kcp-kube-quota", "subcontroller":"kubequota", "workspace":"12evhr9ysp97npaj"}
+#	0x10421a8a3	github.com/kcp-dev/apimachinery/v2/third_party/informers.(*processorListener).pop+0xd3	/Users/I567861/sap/kcp/playground/apimachinery/third_party/informers/shared_informer.go:686
+#	0x1032fb817	k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1+0x57				/Users/I567861/sap/kcp/playground/vendor/k8s.io/apimachinery/pkg/util/wait/wait.go:72
+
+30 @ 0x102d5bfb8 0x102d37b5c 0x10421a8a4 0x1032fb818 0x102d64c94
+# labels: {"controller":"kcp-kube-quota", "subcontroller":"kubequota", "workspace":"gon7yooatra4fmkq"}
+#	0x10421a8a3	github.com/kcp-dev/apimachinery/v2/third_party/informers.(*processorListener).pop+0xd3	/Users/I567861/sap/kcp/playground/apimachinery/third_party/informers/shared_informer.go:686
+#	0x1032fb817	k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1+0x57				/Users/I567861/sap/kcp/playground/vendor/k8s.io/apimachinery/pkg/util/wait/wait.go:72
+
+30 @ 0x102d5bfb8 0x102d37b5c 0x10421a8a4 0x1032fb818 0x102d64c94
+# labels: {"controller":"kcp-kube-quota", "subcontroller":"kubequota", "workspace":"system:shard"}
+#	0x10421a8a3	github.com/kcp-dev/apimachinery/v2/third_party/informers.(*processorListener).pop+0xd3	/Users/I567861/sap/kcp/playground/apimachinery/third_party/informers/shared_informer.go:686
+#	0x1032fb817	k8s.io/apimachinery/pkg/util/wait.(*Group).Start.func1+0x57				/Users/I567861/sap/kcp/playground/vendor/k8s.io/apimachinery/pkg/util/wait/wait.go:72
