@@ -1,0 +1,6 @@
+[submodule "kcp"]
+	path = kcp
+	url = https://github.com/ntnn/kcp
+[submodule "kubernetes"]
+	path = kubernetes
+	url = https://github.com/ntnn/kubernetes
