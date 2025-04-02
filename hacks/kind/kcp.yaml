@@ -8,3 +8,5 @@ nodes:
       - containerPort: 31443
         hostPort: 31443
         protocol: TCP
+    labels:
+      ingress-ready: true
