@@ -4,15 +4,9 @@ cd "$(dirname "$0")/.."
 basedir="$(pwd)"
 cd kcp
 
-rm -rf "$basedir/.kcp"
-mkdir -p "$basedir/.kcp"
-
-kcp_args=(
-    "start"
-    --root-directory="$basedir/.kcp"
-    --etcd-servers='http://localhost:2380'
-    -v=2
-)
+check_etcd() {
+    curl --fail http://localhost:2379/readyz
+}
 
 start_etcd() {
     ETCD_UNSUPPORTED_ARCH="arm64" /opt/homebrew/opt/etcd/bin/etcd \
@@ -21,13 +15,30 @@ start_etcd() {
         --log-outputs="$basedir/etcd.log"
 }
 
-start_etcd &
+kill_etcd() {
+    pkill etcd
+}
 
-while ! curl --fail http://localhost:2379/readyz; do
-    sleep 1
+while check_etcd; do
+    kill_etcd
 done
 
-trap "kill $(jobs -p)" EXIT
+rm -rf "$basedir/.kcp"
+mkdir -p "$basedir/.kcp"
+
+start_etcd &
+
+while ! check_etcd; do
+    sleep 1
+done
+trap kill_etcd EXIT
+
+kcp_args=(
+    "start"
+    --root-directory="$basedir/.kcp"
+    --etcd-servers='http://localhost:2380'
+    -v=2
+)
 
 {
     case "$1" in
