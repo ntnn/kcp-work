@@ -22,8 +22,12 @@ start_etcd() {
 }
 
 start_etcd &
-# TODO poll for etcd to be ready
-sleep 5
+
+while ! curl --fail http://localhost:2379/readyz; do
+    sleep 1
+done
+
+trap "kill $(jobs -p)" EXIT
 
 {
     case "$1" in
