@@ -1,0 +1,13 @@
+---
+apiVersion: apis.kcp.io/v1alpha1
+kind: APIExport
+metadata:
+  name: pki.massive.corp
+spec:
+  latestResourceSchemas:
+  - v1.certificates.pki.massive.corp
+  permissionClaims:
+  - group: ""
+    resource: secrets
+    # todo reduce and add selector
+    all: true

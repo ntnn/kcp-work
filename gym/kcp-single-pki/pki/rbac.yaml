@@ -1,0 +1,22 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pki.massive.corp:access-endpointslice
+rules:
+- apiGroups: ["apis.kcp.io"]
+  verbs: ["list", "watch", "get"]
+  resources:
+  - apiexportendpointslices
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pki.massive.corp:access-content
+rules:
+- apiGroups: ["apis.kcp.io"]
+  verbs: ["*"]
+  resources:
+  - apiexports/content
+  resourceNames:
+  - pki.massive.corp
