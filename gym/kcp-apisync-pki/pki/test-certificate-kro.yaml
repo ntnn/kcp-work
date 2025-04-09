@@ -1,0 +1,9 @@
+---
+apiVersion: kro.run/v1alpha1
+kind: Certificate
+metadata:
+  name: test-certificate-kro
+  namespace: test-certificate-kro
+spec:
+  hostname: test-kro
+  emails: example@massive.corp
