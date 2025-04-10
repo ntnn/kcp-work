@@ -4,3 +4,9 @@
 [submodule "kubernetes"]
 	path = kubernetes
 	url = https://github.com/ntnn/kubernetes
+[submodule "apimachinery"]
+	path = apimachinery
+	url = https://github.com/kcp-dev/apimachinery
+[submodule "client-go"]
+	path = client-go
+	url = https://github.com/kcp-dev/client-go
