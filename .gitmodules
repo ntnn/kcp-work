@@ -10,3 +10,6 @@
 [submodule "client-go"]
 	path = client-go
 	url = https://github.com/kcp-dev/client-go
+[submodule "code-generator"]
+	path = code-generator
+	url = https://github.com/kcp-dev/code-generator
