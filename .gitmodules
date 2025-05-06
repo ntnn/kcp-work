@@ -4,12 +4,12 @@
 [submodule "kubernetes"]
 	path = kubernetes
 	url = https://github.com/ntnn/kubernetes
-[submodule "apimachinery"]
-	path = apimachinery
+[submodule "kcp-apimachinery"]
+	path = kcp-apimachinery
 	url = https://github.com/kcp-dev/apimachinery
-[submodule "client-go"]
-	path = client-go
+[submodule "kcp-client-go"]
+	path = kcp-client-go
 	url = https://github.com/kcp-dev/client-go
-[submodule "code-generator"]
-	path = code-generator
+[submodule "kcp-code-generator"]
+	path = kcp-code-generator
 	url = https://github.com/kcp-dev/code-generator
