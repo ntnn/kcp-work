@@ -32,3 +32,19 @@ goroutines -s
 transcript -off
 
 ```
+
+```bash
+make -C kcp-client-go clean-generated codegen
+```
+
+```bash
+make -C kcp test-integration WHAT=./test/integration/workspace
+```
+
+```bash
+go test -count 1 -race ./kcp/test/integration/framework -run TestGoleak
+```
+
+```bash
+go test -count 1 -race ./kcp/test/integration/workspace -run TestWorkspaceDeletionLeak
+```
