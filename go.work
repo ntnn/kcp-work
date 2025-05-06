@@ -2,14 +2,15 @@ go 1.24.0
 
 use (
 	./kcp
-	./kubernetes
-	./apimachinery
-	./client-go
+	./kcp/sdk
+
+//	./kcp-apimachinery
+//	./kcp-client-go
+//	./kcp-code-generator
+//	./kubernetes
 )
 
 replace (
-	github.com/kcp-dev/apimachinery => ./apimachinery
-	github.com/kcp-dev/client-go => ./client-go
 
 	k8s.io/api => ./kubernetes/staging/src/k8s.io/api
 	k8s.io/apiextensions-apiserver => ./kubernetes/staging/src/k8s.io/apiextensions-apiserver
@@ -41,4 +42,5 @@ replace (
 	k8s.io/sample-apiserver => ./kubernetes/staging/src/k8s.io/sample-apiserver
 	k8s.io/sample-cli-plugin => ./kubernetes/staging/src/k8s.io/sample-cli-plugin
 	k8s.io/sample-controller => ./kubernetes/staging/src/k8s.io/sample-controller
+
 )
