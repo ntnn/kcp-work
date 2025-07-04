@@ -19,3 +19,6 @@
 [submodule "multicluster-runtime"]
 	path = multicluster-runtime
 	url = https://github.com/kubernetes-sigs/multicluster-runtime
+[submodule "kcp-multicluster-provider"]
+	path = kcp-multicluster-provider
+	url = https://github.com/kcp-dev/multicluster-provider
