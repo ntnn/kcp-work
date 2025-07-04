@@ -49,9 +49,6 @@ for arg in "$@"; do
     case "$arg" in
         (dex)
             kcp_args+=(
-                --oidc-issuer-url='https://127.0.0.1:5556/dex'
-                --oidc-client-id=kcp
-                --oidc-ca-file="/opt/homebrew/etc/pki/ca.crt"
             )
             ;;
         (dlv) dlv=true;;
