@@ -11,6 +11,8 @@ use (
 	./kcp-code-generator
 	./kcp-code-generator/examples
 
+	./kcp-multicluster-provider
+
 	./kubernetes
 	./kubernetes/staging/src/k8s.io/api
 	./kubernetes/staging/src/k8s.io/apiextensions-apiserver
