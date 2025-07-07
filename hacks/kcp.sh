@@ -2,28 +2,14 @@
 
 set -e
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <kind kube config input> <kcp kube config output>"
-    exit 1
-fi
+kind get clusters | grep -q kind-kcp \
+    || kind create cluster --name kcp
 
-export KUBECONFIG="$1"
-kcp_config="$2"
+kapps "" kind-kcp default
 
 helm repo add jetstack https://charts.jetstack.io
 helm repo add kcp-dev https://kcp-dev.github.io/helm-charts/
 helm repo update
-
-kubectl apply -n cert-manager \
-    -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.crds.yaml
-
-helm upgrade \
-  --install \
-  --wait \
-  --namespace cert-manager \
-  --create-namespace \
-  --version v1.17.0 \
-  cert-manager jetstack/cert-manager
 
 helm upgrade \
   --install \
