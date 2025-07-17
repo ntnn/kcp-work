@@ -1,0 +1,133 @@
+git cherry-pick f118ae4cfa2 # README
+
+# git cherry-pick 5daacce5dd2 # UPSTREAM: <carry>: controlplane/apiserver: add miniaggregator
+g cherry-pick 599cf7786cc26c68650873b7658f0e4aabac0cac
+
+# git cherry-pick ad774f98968 # UPSTREAM: <carry>: clusterize controllers
+g cherry-pick c2b69a859689a536f8e316b70599bb506b38f64b
+
+# git cherry-pick ad774f98968 # UPSTREAM: <carry>: clusterize controllers
+# g cherry-pick 0212d52d9c0050f328f77090cabb02ab2d943181
+# g cherry-pick 8576ccef32024b30af88bbc1b213a15889039b5e
+# g cherry-pick d2b70e607229f2d8650e0adc300463e76f7bf295
+# g cherry-pick 6bf8acc7977
+# g cherry-pick 9b818f4c2e8
+# g cherry-pick 0212d52d9c0050f328f77090cabb02ab2d943181
+
+git cherry-pick 3803d7256df # UPSTREAM: <carry>: re-add GC worker locks
+
+git cherry-pick 54f4440844a # UPSTREAM: <carry>: Add kcp patchers
+
+# git cherry-pick c4ca824f64f # UPSTREAM: <carry>: re-generated pkg/controller/resourcequota/resource_quota_controller_patch.go
+g cherry-pick a4026681528
+
+# git cherry-pick 18e53ee9550 # UPSTREAM: <carry>: re-generated pkg/controller/garbagecollector/garbagecollector_patch.go
+g cherry-pick 2db88ac7d81
+
+git cherry-pick 3f57c32df01 # UPSTREAM: <carry>: storage: etcd cluster key computation
+
+# git cherry-pick e0c9edb2e55 # UPSTREAM: <carry>: clusterize serviceaccounts
+g cherry-pick 28573ea7ac4
+
+git cherry-pick 7c24932a02e # UPSTREAM: <carry>: registry/core/serviceaccount: do not crash without pods
+
+# TODO is this still needed? the todo points at 1.28
+git cherry-pick 05a72c226e4 # UPSTREAM: <carry>: kube-aggregator
+
+git cherry-pick e7a4dbfc3ac # UPSTREAM: <carry>: INTERESTING: clusterize admission
+
+git cherry-pick b79b063e22c # UPSTREAM: <carry>: Clusterize ValidatingAdmissionPolicy admission plugin and policy plugin framework
+
+git cherry-pick 121d5dfbd9c # UPSTREAM: <carry>: clusterize storage hash
+
+git cherry-pick 725b45feb67 # UPSTREAM: <carry>: endpoints: add Cluster struct for ctx
+
+git cherry-pick 2e64258b06b # UPSTREAM: <carry>: endpoints/patch: wire openapi for CRD strategic merge patch
+
+# git cherry-pick b94837001d8 # UPSTREAM: <carry>: storage/etcd3: clusterize
+# g cherry-pick 53f28fb5f08
+g cherry-pick b9358be55e0
+
+git cherry-pick dc4234ce1ee # UPSTREAM: <carry>: apiserver: partial wildcard metadata request accross identities
+
+git cherry-pick 4be33ea10e6 # UPSTREAM: <carry>: endpoints: set kcp.io/original-api-version on wildcard partial metadata requests
+
+# git cherry-pick b01db654858 # UPSTREAM: <carry>: watch(er/cache): clusterize
+g cherry-pick 4efba8405c1
+
+git cherry-pick ac0d36766a7 # UPSTREAM: <carry>: apiserver: split chain into pre and post authz
+
+git cherry-pick a89fbf0c9d4 # UPSTREAM: <carry>: apiserver: clusterize listed paths
+
+# openapi noted to be replaced with a dynamic implementation
+git cherry-pick 92baae503aa # UPSTREAM: <carry>: apiserver: clusterize OpenAPI v2
+
+git cherry-pick 3069f69ea4c # UPSTREAM: <carry>: clusterize BuiltInAuthenticationOptions
+
+git cherry-pick ca4cbe155fe # UPSTREAM: <carry>: storage: add UseResourceAsPrefixDefault for legacy storage paths
+
+# g cherry-pick 3de5f59 # UPSTREAM: <carry>: apiextensions-apiserver
+# git cherry-pick 3de5f59ba93 # UPSTREAM: <carry>: apiextensions-apiserver
+# git cherry-pick a1f8a4147b241c146bf8d16def6f2ee82c5e26f9
+# git cherry-pick 922a3a21b07438f9772a6cfe6857f20023abbcb2
+# g cherry-pick 89421f09921d309bc2827322f8b22843f81a9ec4
+# g cherry-pick f2c1d092c34
+# g cherry-pick 577972dc4d7 # manual adjustment
+# g cherry-pick ea8be82d588 # manual adjust
+# g cherry-pick a6d078ceac57473ffae870eb9273856049cefd86
+g cherry-pick 07da658bae443f14532cd2f2a6928c8e23492f9b
+
+# git cherry-pick 8da68d9e8ea # UPSTREAM: <carry>: cache-server: wire shard name into storage
+# g cherry-pick 7285dd19181
+# g cherry-pick 48e4f685c0a
+g cherry-pick 85425a60459
+
+git cherry-pick 6e22f603e40 # UPSTREAM: <carry>: add client and informer hacks
+
+# git cherry-pick daca4627f77 # UPSTREAM: <carry>: controlplane: wire informers and clients
+g cherry-pick ae3b4e1a2c4
+
+git cherry-pick 0903019f723 # UPSTREAM: <carry>: generic cleanup
+
+git cherry-pick 76f4175367b # UPSTREAM: <carry>: controlplane/apiserver: disable protobuf for loopback
+
+# git cherry-pick ebea829eee4 # UPSTREAM: <carry>: pass system:admin clients and informers in generic control plane
+g cherry-pick 376a1963109
+
+# git cherry-pick 36e648f8578 # UPSTREAM: <carry>: remove REST mapper from admission plugins
+g cherry-pick 055c051630f9cf48f31cdfa90769455077d71f45 # gc UpdateMonitors -> Sync
+
+git cherry-pick 863a13838ee # UPSTREAM: <carry>: provide supportedMediaTypes for custom resoure handler patch
+
+git cherry-pick cc950720cba # UPSTREAM: <carry>: prevent NPE if no authorization is set
+
+git cherry-pick b43c09823cf # UPSTREAM: <carry>: wrap CRD group into packagePrefix for OpenAPIV3 builder
+
+git cherry-pick 326bab4e3f3 # UPSTREAM: <CARRY>: clusterize validatingadmissionpolicystatus controller
+
+git cherry-pick ffba2989163 # UPSTREAM: <carry>: apiserver cleaning
+
+git cherry-pick 7700469fac9 # UPSTREAM: <carry>: include cluster name in authz SubjectAccessReview in webhooks
+
+git cherry-pick c6b944a1491 # CARRY: split auth/authz chains even more
+
+git cherry-pick 086f61ecf69 # UPSTREAM: <carry>: authz: add scoping to default rule resolver
+
+git cherry-pick 648ea4d0bc1 # UPSTREAM: <carry>: authz: add warrants to default rule resolver
+
+git cherry-pick 2f73b395b6b # UPSTREAM: <carry>: endpoints: wire in ctx to watchListTransformer
+
+git cherry-pick 4f5138df60d # UPSTREAM: <carry>: Clusterize MutatingAdmissionPolicy admission plugin and policy plugin framework
+
+git cherry-pick aa1980d54dc # UPSTREAM: <carry>: don't use --prefers-protobuf with client-gen
+
+# git cherry-pick 4dcd7f43320 # UPSTREAM: <carry>: Add kube feature gate for global service account
+g cherry-pick 06d0f6cb627
+
+# g cherry-pick 0863e802292efb4457490ee7a3d92edbacb268dc # deps
+
+# new commits:
+g cherry-pick 520d43af74a # logicalcluster.New -> .Name fixup
+g revert e51a3ab85c8 # Revert "UPSTREAM: <carry>: don't use --prefers-protobuf with client-gen"
+g cherry-pick 81640f4071a # enable weighted protobuf and cbor in internal apiserver
+g cherry-pick dfe6b301345 # protobuf and cbor enablement in crd handler
