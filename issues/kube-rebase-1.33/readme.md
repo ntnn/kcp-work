@@ -26,11 +26,16 @@ update everything from k/k/staging to v0.33.2
 
 update everything from k/k/staging to v0.33.2
 
+    go get k8s.io/code-generator@v0.33.3
+
     go get k8s.io/klog/v2@latest
 
 ## examples/go.mod
 
 update everything from k/k/staging to v0.33.2
+
+    go get k8s.io/apimachinery@v0.33.3
+    go get k8s.io/client-go@v0.33.3
 
 TODO: update kcp-dev/apimachinery
 
@@ -39,6 +44,9 @@ TODO: update kcp-dev/client-go
 ## check
 
     make codegen
+
+    git add .
+    git commit -m codegen
 
 commit
 
@@ -61,25 +69,18 @@ TODO: update kcp-dev/code-generator
 
     make codegen
 
-commit
+    git add .
+    git commit -m codegen
 
-    make lint
-
-This will likely fail due to missing updates in the `_expansion.go`
-files. Check what the corresponding files in kube's client-go look like
-and update them accordingly.
-
-Run `./hack/update-expansion.sh`, this will copy over the upstream
-expansions and do some basic preparations.
+    ./hack/populate-copies.sh
 
 Check and update each file to preserve the cluster-awareness and rename
 types as needed. Also check for entirely new functions and methods that
 need to be made cluster-aware.
 
-## third party
+    TODO: in listers/.../._expaniong.o - separate the `...Cluster...Expansion` types into _kcp files? would remove them from future diffs
 
-Compare the files in the `third_party` directory with the upstream
-versions and update as needed.
+    make lint
 
 # update kcp-dev/kubernetes
 
@@ -102,7 +103,7 @@ We will use this list to cherry-pick each commit one by one.
 
 Then reset to the last k/k release:
 
-    git reset --hard kubernetes/release-1.33
+    git reset --hard v1.33.3
 
 ## prep k/k
 
@@ -151,7 +152,7 @@ Then go through the list of commits one by one and cherry-pick them.
 It is a good idea to run at least the linter after each one to find
 potential issues early.
 
-    git diff --name-only kubernetes/release-1.32 kubernetes/release-1.33 > ../changed_files.txt
+    git diff --name-only v1.32.3 v1.33.3 > ../changed_files.txt
 
     list_changed_files() {
         for changed_file in $(git diff --name-only @ @~1); do
@@ -162,7 +163,7 @@ potential issues early.
     }
 
     view_changed_files() {
-        local changed="$(changed_files)"
+        local changed="$(list_changed_files)"
         [[ -z "$changed" ]] && return 0
         git diff-tree -r -p @  -- $changed
     }
@@ -226,6 +227,17 @@ update the deps
     g cherry-pick 80a19e12cbe57606b7937efb202edf023196f429 # random assortment
 
     g cherry-pick 0dcd5719f # ignore error instead of errcheck
+
+    go mod edit -replace k8s.io/kubernetes=../kubernetes
+    find ../kubernetes/staging/src/k8s.io -mindepth 1 -maxdepth 1 | while read staging; do
+        go mod edit -replace "k8s.io/${staging##*/}=$staging"
+    done
+
+    cd sdk
+    go mod edit -replace k8s.io/kubernetes=../../kubernetes
+    find ../../kubernetes/staging/src/k8s.io -mindepth 1 -maxdepth 1 | while read staging; do
+        go mod edit -replace "k8s.io/${staging##*/}=$staging"
+    done
 
 
 temp fixed

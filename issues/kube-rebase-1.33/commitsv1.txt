@@ -1,0 +1,106 @@
+# PR merged
+# git cherry-pick 764af8d6ac6 # UPSTREAM: 113151: Revert: Revert: Clean up CRD conversion code structure
+
+git cherry-pick f118ae4cfa2 # README
+
+git cherry-pick 5daacce5dd2 # UPSTREAM: <carry>: controlplane/apiserver: add miniaggregator
+
+# git cherry-pick ad774f98968 # UPSTREAM: <carry>: clusterize controllers
+g cherry-pick d7d26245eb7
+
+git cherry-pick 3803d7256df # UPSTREAM: <carry>: re-add GC worker locks
+
+git cherry-pick 54f4440844a # UPSTREAM: <carry>: Add kcp patchers
+
+git cherry-pick c4ca824f64f # UPSTREAM: <carry>: re-generated pkg/controller/resourcequota/resource_quota_controller_patch.go
+
+git cherry-pick 18e53ee9550 # UPSTREAM: <carry>: re-generated pkg/controller/garbagecollector/garbagecollector_patch.go
+
+git cherry-pick 3f57c32df01 # UPSTREAM: <carry>: storage: etcd cluster key computation
+
+# git cherry-pick e0c9edb2e55 # UPSTREAM: <carry>: clusterize serviceaccounts
+g cherry-pick 682add32c94
+
+git cherry-pick 7c24932a02e # UPSTREAM: <carry>: registry/core/serviceaccount: do not crash without pods
+
+git cherry-pick 05a72c226e4 # UPSTREAM: <carry>: kube-aggregator
+
+git cherry-pick e7a4dbfc3ac # UPSTREAM: <carry>: INTERESTING: clusterize admission
+
+git cherry-pick b79b063e22c # UPSTREAM: <carry>: Clusterize ValidatingAdmissionPolicy admission plugin and policy plugin framework
+
+git cherry-pick 121d5dfbd9c # UPSTREAM: <carry>: clusterize storage hash
+
+git cherry-pick 725b45feb67 # UPSTREAM: <carry>: endpoints: add Cluster struct for ctx
+
+git cherry-pick 2e64258b06b # UPSTREAM: <carry>: endpoints/patch: wire openapi for CRD strategic merge patch
+
+# git cherry-pick b94837001d8 # UPSTREAM: <carry>: storage/etcd3: clusterize
+g cherry-pick 76cea8a17e1
+
+git cherry-pick dc4234ce1ee # UPSTREAM: <carry>: apiserver: partial wildcard metadata request accross identities
+
+git cherry-pick 4be33ea10e6 # UPSTREAM: <carry>: endpoints: set kcp.io/original-api-version on wildcard partial metadata requests
+
+# git cherry-pick b01db654858 # UPSTREAM: <carry>: watch(er/cache): clusterize
+g cherry-pick 63a39555539
+
+git cherry-pick ac0d36766a7 # UPSTREAM: <carry>: apiserver: split chain into pre and post authz
+
+git cherry-pick a89fbf0c9d4 # UPSTREAM: <carry>: apiserver: clusterize listed paths
+
+git cherry-pick 92baae503aa # UPSTREAM: <carry>: apiserver: clusterize OpenAPI v2
+
+git cherry-pick 3069f69ea4c # UPSTREAM: <carry>: clusterize BuiltInAuthenticationOptions
+
+git cherry-pick ca4cbe155fe # UPSTREAM: <carry>: storage: add UseResourceAsPrefixDefault for legacy storage paths
+
+# git cherry-pick 3de5f59ba93 # UPSTREAM: <carry>: apiextensions-apiserver
+g cherry-pick c930d016a68
+
+# git cherry-pick 8da68d9e8ea # UPSTREAM: <carry>: cache-server: wire shard name into storage
+g cherry-pick bec262bf9d7
+
+git cherry-pick 6e22f603e40 # UPSTREAM: <carry>: add client and informer hacks
+
+# git cherry-pick daca4627f77 # UPSTREAM: <carry>: controlplane: wire informers and clients
+g cherry-pick cff716694fb
+
+git cherry-pick 0903019f723 # UPSTREAM: <carry>: generic cleanup
+
+# kube-native types can talk protobuf, everything else should fall back
+# to JSON
+# git cherry-pick 76f4175367b # UPSTREAM: <carry>: controlplane/apiserver: disable protobuf for loopback
+
+# git cherry-pick ebea829eee4 # UPSTREAM: <carry>: pass system:admin clients and informers in generic control plane
+g cherry-pick 379e157532f
+
+git cherry-pick 36e648f8578 # UPSTREAM: <carry>: remove REST mapper from admission plugins
+
+git cherry-pick 863a13838ee # UPSTREAM: <carry>: provide supportedMediaTypes for custom resoure handler patch
+
+git cherry-pick cc950720cba # UPSTREAM: <carry>: prevent NPE if no authorization is set
+
+git cherry-pick b43c09823cf # UPSTREAM: <carry>: wrap CRD group into packagePrefix for OpenAPIV3 builder
+
+git cherry-pick 326bab4e3f3 # UPSTREAM: <CARRY>: clusterize validatingadmissionpolicystatus controller
+
+git cherry-pick ffba2989163 # UPSTREAM: <carry>: apiserver cleaning
+
+git cherry-pick 7700469fac9 # UPSTREAM: <carry>: include cluster name in authz SubjectAccessReview in webhooks
+
+git cherry-pick c6b944a1491 # CARRY: split auth/authz chains even more
+
+git cherry-pick 086f61ecf69 # UPSTREAM: <carry>: authz: add scoping to default rule resolver
+
+git cherry-pick 648ea4d0bc1 # UPSTREAM: <carry>: authz: add warrants to default rule resolver
+
+git cherry-pick 2f73b395b6b # UPSTREAM: <carry>: endpoints: wire in ctx to watchListTransformer
+
+git cherry-pick 4f5138df60d # UPSTREAM: <carry>: Clusterize MutatingAdmissionPolicy admission plugin and policy plugin framework
+
+# kube native can prefer protobuf, will fall back to json
+# git cherry-pick aa1980d54dc # UPSTREAM: <carry>: don't use --prefers-protobuf with client-gen
+
+# git cherry-pick 4dcd7f43320 # UPSTREAM: <carry>: Add kube feature gate for global service account
+g cherry-pick 0f434fe2cb8
