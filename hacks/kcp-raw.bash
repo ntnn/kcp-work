@@ -4,34 +4,9 @@ cd "$(dirname "$0")/.."
 source ./hacks/.env
 basedir="$(pwd)"
 
-check_etcd() {
-    curl --fail http://localhost:2379/readyz
-}
+echo refreshing etcd
+./hacks/etcd.bash clean-data
 
-start_etcd() {
-    ETCD_UNSUPPORTED_ARCH="arm64" /opt/homebrew/opt/etcd/bin/etcd \
-        --name=kcp-etcd \
-        --data-dir="$basedir/.kcp/etcd" \
-        --log-outputs="$basedir/etcd.log"
-}
-
-kill_etcd() {
-    pkill etcd
-}
-
-while check_etcd; do
-    kill_etcd
-done
-
-rm -rf "$basedir/.kcp"
-mkdir -p "$basedir/.kcp"
-
-start_etcd &
-
-while ! check_etcd; do
-    sleep 1
-done
-trap kill_etcd EXIT
 
 kcp_args=(
     "start"
