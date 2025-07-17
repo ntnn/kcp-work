@@ -4,61 +4,46 @@ cd "$(dirname "$0")/.."
 source ./hacks/.env
 basedir="$(pwd)"
 
-check_etcd() {
-    curl --fail http://localhost:2379/readyz
-}
-
-start_etcd() {
-    ETCD_UNSUPPORTED_ARCH="arm64" /opt/homebrew/opt/etcd/bin/etcd \
-        --name=kcp-etcd \
-        --data-dir="$basedir/.kcp/etcd" \
-        --log-outputs="$basedir/etcd.log"
-}
-
-kill_etcd() {
-    pkill etcd
-}
-
-while check_etcd; do
-    kill_etcd
-done
-
 rm -rf "$basedir/.kcp"
 mkdir -p "$basedir/.kcp"
 
-start_etcd &
+extra_args=()
 
-while ! check_etcd; do
-    sleep 1
+log_level=2
+dlv=false
+etcd_args=()
+for arg in "$@"; do
+    case "$arg" in
+        (log_level=*) log_level=${arg##log_level=};;
+        (dlv) dlv=true;;
+        (fresh-etcd) etcd_args+=( "clean-data" );;
+        (*) extra_args+=( "$arg" )
+    esac
 done
-trap kill_etcd EXIT
+
+echo refreshing etcd
+./hacks/etcd.bash ${etcd_args[@]}
 
 kcp_args=(
     "start"
     --root-directory="$basedir/.kcp"
-    --etcd-servers='http://localhost:2380'
-    -v=2
+    --etcd-servers='http://localhost:2379'
+    -v=${log_level}
 
     --bind-address=127.0.0.1
-    --tls-cert-file=/opt/homebrew/etc/pki/issued/kcp.crt
-    --tls-private-key-file=/opt/homebrew/etc/pki/private/kcp.key
+    # --tls-cert-file=/opt/homebrew/etc/pki/issued/kcp.crt
+    # --tls-private-key-file=/opt/homebrew/etc/pki/private/kcp.key
+
+    --feature-gates=CacheAPIs=true,WorkspaceMounts=true
 )
 
-dlv=false
-for arg in "$@"; do
-    case "$arg" in
-        (dex)
-            kcp_args+=(
-            )
-            ;;
-        (dlv) dlv=true;;
-    esac
-done
-
+echo "starting kcp with '${kcp_args[@]}'"
+echo "output goes to '$basedir/kcp.log'"
+rm -f "$basedir/kcp.log"
 {
     if [[ "$dlv" == true ]]; then
-        dlv debug --listen 127.0.0.1:9999 --headless ./kcp/cmd/kcp -- ${kcp_args[@]}
+        dlv debug --listen 127.0.0.1:9999 --headless ./kcp/cmd/kcp -- ${kcp_args[@]} ${extra_args[@]}
     else
-        go run ./kcp/cmd/kcp ${kcp_args[@]}
+        go run ./kcp/cmd/kcp ${kcp_args[@]} ${extra_args[@]}
     fi
 } 2>&1 | tee "$basedir/kcp.log"

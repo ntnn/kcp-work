@@ -1,4 +1,5 @@
 *.kubeconfig
 .kcp/
+.etcd/
 /hacks/.dex/
 /hacks/.env
