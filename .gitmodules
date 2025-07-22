@@ -22,3 +22,6 @@
 [submodule "kcp-multicluster-provider"]
 	path = kcp-multicluster-provider
 	url = https://github.com/kcp-dev/multicluster-provider
+[submodule "go-ntnn"]
+	path = go-ntnn
+	url = https://github.com/ntnn/go-ntnn
