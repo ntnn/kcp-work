@@ -1,6 +1,9 @@
 go 1.23.0
 
 use (
+
+	./go-ntnn
+
 	./kcp
 	./kcp/sdk
 
