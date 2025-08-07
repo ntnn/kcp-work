@@ -199,6 +199,17 @@ And finally regenerate the client code:
 
     hack/update-codegen.sh
 
+This can update the kube dependencies to a version instead of keeping it
+at v0.0.0. That will break scripts further down the line, so that needs
+to be fixed:
+
+    gsed -e '/k8s.io/ s#v0.33.3#v0.0.0#' -i "go.mod"
+    find staging -iname go.mod \
+        | while read go_mod; do
+            gsed -e '/k8s.io/ s#v0.33.3#v0.0.0#' -i "$go_mod"
+        done
+
+
 TODO this deletes `zz_generated.validations.go` in
 `staging/src/k8s.io/code-generator/cmd/validation-gen/output_tests/tags/`
 
@@ -229,14 +240,23 @@ update the deps
         go mod edit -replace "k8s.io/${staging##*/}=$staging"
     done
 
+Compare go.mod dependencies between the various go.mods and kube
+dependencies:
 
-temp fixed
+    ./hack/verify-go-modules.sh
 
-    g cherry-pick b5ce252a7 # ntnn.Log
+And between the different components:
+
+    TODO
+
+
+Update to kcp-dev/kubernetes kcp-1.33.3
+
+    BRANCH=kcp-1.33.3 ./hack/bump-k8s.sh
 
 run codegen
 
-    CGO_LDFLAGS="-w" mymake codegen
+    CGO_LDFLAGS="-w" make codegen
 
     CGO_LDFLAGS="-w" mymake lint
 
