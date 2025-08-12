@@ -1,0 +1,9 @@
+apiVersion: apis.kcp.io/v1alpha2
+kind: APIBinding
+metadata:
+  name: cowboys.wildwest.dev
+spec:
+  reference:
+    export:
+      name: cowboys.wildwest.dev
+      path: root:provider
