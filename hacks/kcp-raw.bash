@@ -4,9 +4,6 @@ cd "$(dirname "$0")/.."
 source ./hacks/.env
 basedir="$(pwd)"
 
-rm -rf "$basedir/.kcp"
-mkdir -p "$basedir/.kcp"
-
 extra_args=()
 
 log_level=2
@@ -16,6 +13,11 @@ for arg in "$@"; do
     case "$arg" in
         (log_level=*) log_level=${arg##log_level=};;
         (dlv) dlv=true;;
+        (fresh)
+            etcd_args+=( "clean-data" )
+            rm -rf "$basedir/.kcp"
+            mkdir -p "$basedir/.kcp"
+            ;;
         (fresh-etcd) etcd_args+=( "clean-data" );;
         (*) extra_args+=( "$arg" )
     esac
