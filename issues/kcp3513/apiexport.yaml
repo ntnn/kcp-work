@@ -1,0 +1,25 @@
+apiVersion: apis.kcp.io/v1alpha2
+kind: APIExport
+metadata:
+  name: cowboys.wildwest.dev
+spec:
+  resources:
+    - group: wildwest.dev
+      name: cowboys
+      schema: today.cowboys.wildwest.dev
+      storage:
+        crd: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: bind-cowboys
+rules:
+  - apiGroups:
+      - apis.kcp.io
+    resources:
+      - apiexports
+    resourceNames:
+      - cowboys.wildwest.dev
+    verbs:
+      - bind

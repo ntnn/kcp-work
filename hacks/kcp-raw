@@ -33,10 +33,12 @@ kcp_args=(
     -v=${log_level}
 
     --bind-address=127.0.0.1
-    # --tls-cert-file=/opt/homebrew/etc/pki/issued/kcp.crt
-    # --tls-private-key-file=/opt/homebrew/etc/pki/private/kcp.key
+    --tls-cert-file=/opt/homebrew/etc/pki/issued/kcp.crt
+    --tls-private-key-file=/opt/homebrew/etc/pki/private/kcp.key
 
-    --feature-gates=CacheAPIs=true,WorkspaceMounts=true
+    --feature-gates=CacheAPIs=true,WorkspaceMounts=true,WorkspaceAuthentication=true
+
+    --api-audiences=kcp
 )
 
 echo "starting kcp with '${kcp_args[@]}'"
