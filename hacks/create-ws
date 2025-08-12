@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+workspace="$1"
+parent_ws="${workspace%:*}"
+ws_name="${workspace##*:}"
+
+current_ws="$(k ws . --short)"
+
+k ws "$parent_ws"
+
+if ! k get ws -o name | grep -q "$ws_name"; then
+    k create-workspace "$ws_name" --ignore-existing --enter
+else
+    k ws "$ws_name"
+fi
+k kcp workspace create-context "${workspace#:}" --overwrite
+
+k ws ":$current_ws"
