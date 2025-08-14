@@ -1,7 +1,0 @@
----
-# The metadata.name from apiexport.yaml
-apiExportName: apiexport.sync.test
-
-agentName: apiexport-sync-test
-
-kcpKubeconfig: kcp-kubeconfig

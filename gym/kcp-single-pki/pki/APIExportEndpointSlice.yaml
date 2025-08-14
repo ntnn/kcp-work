@@ -1,9 +1,0 @@
----
-kind: APIExportEndpointSlice
-apiVersion: apis.kcp.io/v1alpha1
-metadata:
-  name: pki.massive.corp
-spec:
-  export:
-    path: root:pki
-    name: pki.massive.corp
