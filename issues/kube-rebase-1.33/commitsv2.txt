@@ -1,0 +1,113 @@
+# g cherry-pick 764af8d6ac6 # UPSTREAM: 113151: Revert: Revert: Clean up CRD conversion code structure
+g cherry-pick 8e740151fca
+
+g cherry-pick f118ae4cfa2 # README
+
+g cherry-pick 5daacce5dd2 # UPSTREAM: <carry>: controlplane/apiserver: add miniaggregator
+
+# g cherry-pick ad774f98968 # UPSTREAM: <carry>: clusterize controllers
+g cherry-pick a8cd5fd5c15
+
+g cherry-pick 3803d7256df # UPSTREAM: <carry>: re-add GC worker locks
+
+g cherry-pick 54f4440844a # UPSTREAM: <carry>: Add kcp patchers
+
+g cherry-pick c4ca824f64f # UPSTREAM: <carry>: re-generated pkg/controller/resourcequota/resource_quota_controller_patch.go
+
+g cherry-pick 18e53ee9550 # UPSTREAM: <carry>: re-generated pkg/controller/garbagecollector/garbagecollector_patch.go
+
+g cherry-pick 3f57c32df01 # UPSTREAM: <carry>: storage: etcd cluster key computation
+
+# g cherry-pick e0c9edb2e55 # UPSTREAM: <carry>: clusterize serviceaccounts
+g cherry-pick cd7b72559f2
+
+g cherry-pick 7c24932a02e # UPSTREAM: <carry>: registry/core/serviceaccount: do not crash without pods
+
+g cherry-pick 05a72c226e4 # UPSTREAM: <carry>: kube-aggregator
+
+g cherry-pick e7a4dbfc3ac # UPSTREAM: <carry>: INTERESTING: clusterize admission
+
+g cherry-pick b79b063e22c # UPSTREAM: <carry>: Clusterize ValidatingAdmissionPolicy admission plugin and policy plugin framework
+
+g cherry-pick 121d5dfbd9c # UPSTREAM: <carry>: clusterize storage hash
+
+g cherry-pick 725b45feb67 # UPSTREAM: <carry>: endpoints: add Cluster struct for ctx
+
+g cherry-pick 2e64258b06b # UPSTREAM: <carry>: endpoints/patch: wire openapi for CRD strategic merge patch
+
+# g cherry-pick b94837001d8 # UPSTREAM: <carry>: storage/etcd3: clusterize
+g cherry-pick 37dc723a29a
+
+g cherry-pick dc4234ce1ee # UPSTREAM: <carry>: apiserver: partial wildcard metadata request accross identities
+
+g cherry-pick 4be33ea10e6 # UPSTREAM: <carry>: endpoints: set kcp.io/original-api-version on wildcard partial metadata requests
+
+# g cherry-pick b01db654858 # UPSTREAM: <carry>: watch(er/cache): clusterize
+g cherry-pick 2e2c1dd3457
+
+g cherry-pick ac0d36766a7 # UPSTREAM: <carry>: apiserver: split chain into pre and post authz
+
+g cherry-pick a89fbf0c9d4 # UPSTREAM: <carry>: apiserver: clusterize listed paths
+
+g cherry-pick 92baae503aa # UPSTREAM: <carry>: apiserver: clusterize OpenAPI v2
+
+g cherry-pick 3069f69ea4c # UPSTREAM: <carry>: clusterize BuiltInAuthenticationOptions
+
+g cherry-pick ca4cbe155fe # UPSTREAM: <carry>: storage: add UseResourceAsPrefixDefault for legacy storage paths
+
+# g cherry-pick 3de5f59ba93 # UPSTREAM: <carry>: apiextensions-apiserver
+g cherry-pick 4ad2b7d5882
+
+# g cherry-pick 8da68d9e8ea # UPSTREAM: <carry>: cache-server: wire shard name into storage
+g cherry-pick 14a154fe75f
+
+# g cherry-pick 6e22f603e40 # UPSTREAM: <carry>: add client and informer hacks
+g cherry-pick a51f76935ef
+
+# g cherry-pick daca4627f77 # UPSTREAM: <carry>: controlplane: wire informers and clients
+g cherry-pick a3c8ad30565
+
+g cherry-pick 0903019f723 # UPSTREAM: <carry>: generic cleanup
+
+g cherry-pick 76f4175367b # UPSTREAM: <carry>: controlplane/apiserver: disable protobuf for loopback
+
+# g cherry-pick ebea829eee4 # UPSTREAM: <carry>: pass system:admin clients and informers in generic control plane
+g cherry-pick 8eac344f3a7
+
+g cherry-pick 36e648f8578 # UPSTREAM: <carry>: remove REST mapper from admission plugins
+
+g cherry-pick 863a13838ee # UPSTREAM: <carry>: provide supportedMediaTypes for custom resoure handler patch
+
+g cherry-pick cc950720cba # UPSTREAM: <carry>: prevent NPE if no authorization is set
+
+g cherry-pick b43c09823cf # UPSTREAM: <carry>: wrap CRD group into packagePrefix for OpenAPIV3 builder
+
+g cherry-pick 326bab4e3f3 # UPSTREAM: <CARRY>: clusterize validatingadmissionpolicystatus controller
+
+g cherry-pick ffba2989163 # UPSTREAM: <carry>: apiserver cleaning
+
+g cherry-pick 7700469fac9 # UPSTREAM: <carry>: include cluster name in authz SubjectAccessReview in webhooks
+
+g cherry-pick c6b944a1491 # CARRY: split auth/authz chains even more
+
+g cherry-pick 086f61ecf69 # UPSTREAM: <carry>: authz: add scoping to default rule resolver
+
+g cherry-pick 648ea4d0bc1 # UPSTREAM: <carry>: authz: add warrants to default rule resolver
+
+g cherry-pick 2f73b395b6b # UPSTREAM: <carry>: endpoints: wire in ctx to watchListTransformer
+
+g cherry-pick 4f5138df60d # UPSTREAM: <carry>: Clusterize MutatingAdmissionPolicy admission plugin and policy plugin framework
+
+g cherry-pick aa1980d54dc # UPSTREAM: <carry>: don't use --prefers-protobuf with client-gen
+
+# g cherry-pick 4dcd7f43320 # UPSTREAM: <carry>: Add kube feature gate for global service account
+g cherry-pick fd2598b97e32406f472f0fe6d99a01913884a234
+
+## new
+
+g cherry-pick 8231d0767e5342c444bba7e5096e882ee235805b # drop validation gen
+
+# g cherry-pick 3be1d08a2a40ebed58c3033de76a704f89ff7375 # drop carry
+g cherry-pick f7256010f4a
+
+g cherry-pick c015cc24a7b05bc5d7524a90b554e8f189e14ba7
