@@ -91,7 +91,7 @@ is as the remote kcp-dev.
 
 ## get the commits
 
-    git reset kcp-dev/kcp-1.32.3
+    git checkout kcp-dev/kcp-1.32.3
 
 export the commits on the current kcp-dev/kubernetes fork until the last
 k/k release:
@@ -240,6 +240,12 @@ update the deps
         go mod edit -replace "k8s.io/${staging##*/}=$staging"
     done
 
+    cd cli
+    go mod edit -replace k8s.io/kubernetes=../../kubernetes
+    find ../../kubernetes/staging/src/k8s.io -mindepth 1 -maxdepth 1 | while read staging; do
+        go mod edit -replace "k8s.io/${staging##*/}=$staging"
+    done
+
 Compare go.mod dependencies between the various go.mods and kube
 dependencies:
 
@@ -252,7 +258,7 @@ And between the different components:
 
 Update to kcp-dev/kubernetes kcp-1.33.3
 
-    BRANCH=kcp-1.33.3 ./hack/bump-k8s.sh
+    BRANCH=kcp-1.33.3-1 ./hack/bump-k8s.sh
 
 run codegen
 
