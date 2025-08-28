@@ -1,0 +1,51 @@
+apiVersion: tenancy.kcp.io/v1alpha1
+kind: WorkspaceAuthenticationConfiguration
+metadata:
+  name: dex-ws
+spec:
+  jwt:
+    - issuer:
+        url: https://127.0.0.1:5557
+        audienceMatchPolicy: MatchAny
+        audiences:
+          - kcp
+        certificateAuthority: |-
+          -----BEGIN CERTIFICATE-----
+          MIIDSzCCAjOgAwIBAgIUOLNZe6/d2/vEEz9pSZfBjFpiLyAwDQYJKoZIhvcNAQEL
+          BQAwFjEUMBIGA1UEAwwLRWFzeS1SU0EgQ0EwHhcNMjUwNTE0MTYxNjM5WhcNMzUw
+          NTEyMTYxNjM5WjAWMRQwEgYDVQQDDAtFYXN5LVJTQSBDQTCCASIwDQYJKoZIhvcN
+          AQEBBQADggEPADCCAQoCggEBAJ5ufpwWRSUaPZA+ZnVUvTrjXfL0Km8Dzyf3tPk3
+          wmj4mWAW3PbJx22lT1i5pO3IQFwGWObrGREXC9tW3XsZOe6gLtG62xDRySPcbuWO
+          MXnOp5licDBVJG/+hd0GBYm2RA9UeVM7WWh4Lj2f6KBfxuZb6uJsSo/p2mz8WCO2
+          7CXsMGApcYfzXowX2FvDDY79GBRVHY2Eko7OhNrlh+m9H9bb2swbGMZaojJDLsSf
+          Wb8pr7pfIzLvLZkmsj4jyS9CiWzFC8kGA8839Aaa3PV1dQh8BsHeHIOhyyoWcYt1
+          d73aLXukSJCKYbbtCUf3HFLUXP5RjU6g8rjdZeqq/t1EsoUCAwEAAaOBkDCBjTAM
+          BgNVHRMEBTADAQH/MB0GA1UdDgQWBBTI3kKrdKHTikya2n1ksJvgPMzpCzBRBgNV
+          HSMESjBIgBTI3kKrdKHTikya2n1ksJvgPMzpC6EapBgwFjEUMBIGA1UEAwwLRWFz
+          eS1SU0EgQ0GCFDizWXuv3dv7xBM/aUmXwYxaYi8gMAsGA1UdDwQEAwIBBjANBgkq
+          hkiG9w0BAQsFAAOCAQEAaSY/xsKby+JPJuu4OVv3n1aaEvR4MUATeRGVbtNnjAny
+          ONfSFmSx/YwCPh+rHpT2vaYtXb4HQL1c8E9nPsbt4nKeB+6Knanp2nzPkYbir9Xb
+          G6wKftuFjTFFPZazKz47apM80nuRWl609Htuz+XUNdl0D24eG4CR0FlU6Yo2AWaw
+          MTMOLxbSsXKaPRpOKaLCrQcKg+eKRQ4Jt3KD50tucuXWgnbxagjSWMWNpPpAn5Bw
+          JBh+fWTUg2gt13FSh8Ulw6m0yTD4f44tsg8WHcw8UGo2yirtZMZ1PZYqcXfcxPr4
+          wUNqfgk7pwvHWD3ja21BQj4+Xo3w+A50gbXHST9LdA==
+          -----END CERTIFICATE-----
+      # claimValidationRules:
+      # - expression: 'claims.email_verified == true'
+      #   message: email_verified must be set to true
+      claimMappings:
+        username:
+          # expression: "claims.email + ':external-user'"
+          claim: email
+          prefix: "oidc:"
+        groups:
+          claim: roles
+          prefix: "oidc:"
+---
+apiVersion: tenancy.kcp.io/v1alpha1
+kind: WorkspaceType
+metadata:
+  name: dex-ws
+spec:
+  authenticationConfigurations:
+    - name: dex-ws
