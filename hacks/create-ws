@@ -5,16 +5,32 @@ set -euo pipefail
 workspace="$1"
 parent_ws="${workspace%:*}"
 ws_name="${workspace##*:}"
+ws_type="${2:-universal}"
 
 current_ws="$(k ws . --short)"
 
 k ws "$parent_ws"
 
-if ! k get ws -o name | grep -q "$ws_name"; then
-    k create-workspace "$ws_name" --ignore-existing --enter
-else
-    k ws "$ws_name"
-fi
+k apply -f- <<EOF
+apiVersion: tenancy.kcp.io/v1alpha1
+kind: Workspace
+metadata:
+  name: $ws_name
+spec:
+  type:
+    name: $ws_type
+    path: root
+EOF
+k wait --for=jsonpath='.status.phase'=Ready "workspace/$ws_name"
+
+k ws "$ws_name"
+
+# if ! k get ws -o name | grep -q "$ws_name"; then
+#     k create-workspace "$ws_name" --ignore-existing --enter --type "$ws_type"
+# else
+#     k ws "$ws_name"
+# fi
+
 k kcp workspace create-context "${workspace#:}" --overwrite
 
 k ws ":$current_ws"
