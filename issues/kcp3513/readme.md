@@ -1,8 +1,6 @@
-See https://github.com/kcp-dev/kcp/issues/3513
+See <https://github.com/kcp-dev/kcp/issues/3513>
 
-# Allow any authenticated user to bind
-
-## Setup
+# Setup
 
     kset .kcp/admin.kubeconfig
 
@@ -10,11 +8,13 @@ See https://github.com/kcp-dev/kcp/issues/3513
 
     ./hacks/create-ws ":root:provider"
 
-    ./hacks/create-ws ":root:consumer"
+    k apply -f ./hacks/dex-ws-authconfig.yaml
+
+    ./hacks/create-ws ":root:consumer" dex-ws
 
     k ws tree
 
-## Create APIExport in provider
+# Create APIExport in provider
 
     k --context root:provider apply -f https://raw.githubusercontent.com/kcp-dev/kcp/refs/heads/main/test/e2e/virtual/apiexport/crd_cowboys.yaml
 
@@ -36,9 +36,23 @@ To only let users from the consumer workspace bind:
         ./issues/kcp3513/provider-only-consumer-ws.yaml \
         | k --context root:provider apply -f -
 
-## Bind APIExport in consumer
+# Bind APIExport in consumer
+
+    k --context root:consumer create ns default # ??
 
     k --context root:consumer apply -f ./issues/kcp3513/consumer.yaml
+
+    ./hacks/dex-oidc-genconfig.bash oidc.kubeconfig root:consumer
+
+    k --kubeconfig oidc.kubeconfig auth whoami
+
+    k --kubeconfig oidc.kubeconfig get ns
+
+    k --kubeconfig oidc.kubeconfig get cm
+
+    k --context root:consumer delete clusterrolebinding dex:user-admin
+
+## bind as service account
 
     token=$(k --context root:consumer create token apibinder --duration=24h)
 
@@ -65,3 +79,12 @@ To only let users from the consumer workspace bind:
     k --context consumer-apibinder apply -f ./issues/kcp3513/apibinding.yaml
 
     k --context root:consumer get cowboys.wildwest.dev
+
+## bind as oidc user
+
+    KUBECONFIG=oidc.kubeconfig k auth whoami
+
+    KUBECONFIG=oidc.kubeconfig k kcp bind apiexport root:provider:cowboys.wildwest.dev \
+        --name cowboys.wildwest.dev
+
+    k --kubeconfig oidc.kubeconfig apply -f ./issues/kcp3513/apibinding.yaml

@@ -34,3 +34,66 @@ subjects:
   - kind: ServiceAccount
     name: apibinder
     namespace: default
+  - kind: User
+    name: admin@example.com:external-user
+    apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: oidc:admin@example.com
+    apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dex:user
+rules:
+- apiGroups:
+    - ""
+  resources:
+    - namespaces
+    - configmaps
+  verbs:
+    - get
+    - list
+- nonResourceURLs:
+    - '*'
+  verbs:
+    - '*'
+- apiGroups:
+    - authorization.k8s.io
+  resources:
+    - selfsubjectaccessreviews
+    - selfsubjectrulesreviews
+  verbs:
+    - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dex:user
+subjects:
+- kind: User
+  name: admin@example.com:external-user
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: oidc:admin@example.com
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: dex:user
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dex:user-admin
+subjects:
+- kind: User
+  name: admin@example.com:external-user
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: oidc:admin@example.com
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io

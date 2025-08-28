@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 alias k=kubectl
 
 ./hacks/create-ws ":root:provider"
 
-./hacks/create-ws ":root:consumer"
+k apply -f ./hacks/dex-ws-authconfig.yaml
+
+./hacks/create-ws ":root:consumer" dex-ws
 
 k --context root:provider apply -f https://raw.githubusercontent.com/kcp-dev/kcp/refs/heads/main/test/e2e/virtual/apiexport/crd_cowboys.yaml
 
@@ -21,30 +25,14 @@ yq '.subjects[0].name = "system:cluster:'$consumer_cluster_id'"' \
     ./issues/kcp3513/provider-only-consumer-ws.yaml \
     | k --context root:provider apply -f -
 
+k --context root:consumer create ns default # ??
 k --context root:consumer apply -f ./issues/kcp3513/consumer.yaml
 
-token=$(k --context root:consumer create token apibinder --duration=24h)
+./hacks/dex-oidc-genconfig.bash oidc.kubeconfig root:consumer
 
-k ws :root:consumer
+k --kubeconfig oidc.kubeconfig apply -f ./issues/kcp3513/apibinding.yaml
 
-k kcp workspace create-context consumer-apibinder \
-    --token "$token" \
-    --overwrite
-k config use-context workspace.kcp.io/current
+sleep 1
 
-# TODO seems create-context is bugged
-k config set-credentials apibinder --token "$token"
-k config set-context consumer-apibinder --user apibinder
-
-# TODO create-context always switches to the new context
-k ws :root
-
-k --context consumer-apibinder auth whoami
-
-k kcp bind apiexport root:provider:cowboys.wildwest.dev \
-    --name cowboys.wildwest.dev \
-    --context consumer-apibinder
-
-k --context consumer-apibinder apply -f ./issues/kcp3513/apibinding.yaml
-
+k --context root:consumer get apibindings
 k --context root:consumer get cowboys.wildwest.dev
