@@ -42,8 +42,7 @@ kcp_args=(
     --tls-cert-file=/opt/homebrew/etc/pki/issued/kcp.crt
     --tls-private-key-file=/opt/homebrew/etc/pki/private/kcp.key
 
-    --feature-gates=CacheAPIs=true,WorkspaceMounts=true,WorkspaceAuthentication=true
-
+    --feature-gates=CacheAPIs=true,WorkspaceMounts=true,WorkspaceAuthentication=true,KcpNativeGarbageCollector=true
     --api-audiences=kcp
 )
 
