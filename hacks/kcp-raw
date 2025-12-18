@@ -19,12 +19,18 @@ for arg in "$@"; do
             mkdir -p "$basedir/.kcp"
             ;;
         (fresh-etcd) etcd_args+=( "clean-data" );;
+        (webhookauth)
+            extra_args+=(
+                "--authorization-webhook-config-file=./kube-authz-webhook-debug/webhook.yaml"
+                "--authorization-order=Webhook,AlwaysAllowGroups,AlwaysAllowPaths,RBAC"
+            )
+            ;;
         (*) extra_args+=( "$arg" )
     esac
 done
 
 echo refreshing etcd
-./hacks/etcd.bash ${etcd_args[@]}
+./hacks/etcd ${etcd_args[@]}
 
 kcp_args=(
     "start"
