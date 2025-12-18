@@ -3,3 +3,4 @@
 .etcd/
 /hacks/.dex/
 /hacks/.env
+/artifacts

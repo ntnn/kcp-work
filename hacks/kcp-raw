@@ -47,6 +47,10 @@ kcp_args=(
     --api-audiences=kcp
 )
 
+export ARTIFACT_DIR="$basedir/artifacts"
+rm -rf "$ARTIFACT_DIR"
+mkdir -p "$ARTIFACT_DIR"
+
 echo "starting kcp with '${kcp_args[@]}'"
 echo "output goes to '$basedir/kcp.log'"
 rm -f "$basedir/kcp.log"
