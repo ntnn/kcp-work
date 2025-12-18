@@ -25,3 +25,6 @@
 [submodule "go-ntnn"]
 	path = go-ntnn
 	url = https://github.com/ntnn/go-ntnn
+[submodule "kube-authz-webhook-debug"]
+	path = kube-authz-webhook-debug
+	url = https://github.com/ntnn/kube-authz-webhook-debug
