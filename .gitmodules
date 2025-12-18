@@ -4,15 +4,6 @@
 [submodule "kubernetes"]
 	path = kubernetes
 	url = https://github.com/ntnn/kubernetes
-[submodule "kube-bind"]
-	path = kube-bind
-	url = https://github.com/kube-bind/kube-bind
-[submodule "multicluster-runtime"]
-	path = multicluster-runtime
-	url = https://github.com/kubernetes-sigs/multicluster-runtime
-[submodule "kcp-multicluster-provider"]
-	path = kcp-multicluster-provider
-	url = https://github.com/kcp-dev/multicluster-provider
 [submodule "go-ntnn"]
 	path = go-ntnn
 	url = https://github.com/ntnn/go-ntnn
