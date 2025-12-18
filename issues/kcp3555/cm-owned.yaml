@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-owned
+  ownerReferences:
+  - apiVersion: v1
+    kind: ConfigMap
+    name: cm-owner
+    uid: REPLACEME
+data:
+  owner: "owned"
