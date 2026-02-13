@@ -3,6 +3,7 @@ go 1.24.0
 use (
 
 	./go-ntnn
+	./kube-authz-webhook-debug
 
 	./kcp
 	./kcp/staging/src/github.com/kcp-dev/apimachinery
