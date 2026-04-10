@@ -1,12 +1,9 @@
-go 1.24.0
+go 1.26.2
 
 use (
-
 	./go-ntnn
-	./kube-authz-webhook-debug
 
 	./kcp
-	./kcp/test/load
 	./kcp/docs/generators/cli-doc
 	./kcp/staging/src/github.com/kcp-dev/apimachinery
 	./kcp/staging/src/github.com/kcp-dev/cli
@@ -15,6 +12,8 @@ use (
 	./kcp/staging/src/github.com/kcp-dev/code-generator/examples
 	./kcp/staging/src/github.com/kcp-dev/sdk
 	./kcp/staging/src/github.com/kcp-dev/virtual-workspace-framework
+	./kcp/test/load
+	./kube-authz-webhook-debug
 
 	// ./kcp-multicluster-provider
 )
