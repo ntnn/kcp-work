@@ -6,12 +6,15 @@ use (
 	./kube-authz-webhook-debug
 
 	./kcp
+	./kcp/test/load
+	./kcp/docs/generators/cli-doc
 	./kcp/staging/src/github.com/kcp-dev/apimachinery
 	./kcp/staging/src/github.com/kcp-dev/cli
 	./kcp/staging/src/github.com/kcp-dev/client-go
 	./kcp/staging/src/github.com/kcp-dev/code-generator
 	./kcp/staging/src/github.com/kcp-dev/code-generator/examples
 	./kcp/staging/src/github.com/kcp-dev/sdk
+	./kcp/staging/src/github.com/kcp-dev/virtual-workspace-framework
 
 	// ./kcp-multicluster-provider
 
